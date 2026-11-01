@@ -13,7 +13,7 @@ import {
 import { Link } from "react-router-dom";
 import "../App.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
+const API_URL = "https://credit-fraud-detection-fr4k.onrender.com";
 
 // PREMIUM ANIMATED RISK METER
 function RiskMeter({ value, color }) {
