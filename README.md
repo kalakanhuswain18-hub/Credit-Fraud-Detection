@@ -1,85 +1,76 @@
-# Credit Fraud Detection Using Machine Learning
+# 💳 Credit Fraud Detection Using Machine Learning
 
-An end-to-end Machine Learning application for identifying potentially fraudulent financial transactions using **Logistic Regression** and **Random Forest**.
+An end-to-end Credit Card Fraud Detection application built using **Machine Learning, FastAPI, React, and Docker**. The system analyzes transaction details and predicts whether a transaction is Genuine or Fraud, along with fraud probability and risk level.
 
-The project combines a Machine Learning pipeline, FastAPI backend, React frontend, and Docker-based deployment.
+## 🌐 Live Demo
 
-> **Project Status: Dockerized full-stack application**
+- **Frontend:** https://credit-fraud-detection-frontend-eight.vercel.app/
+- **Transaction Analyzer:** https://credit-fraud-detection-frontend-eight.vercel.app/analyzer
+- **Backend API:** https://credit-fraud-detection-fr4k.onrender.com/
+- **API Documentation:** https://credit-fraud-detection-fr4k.onrender.com/docs
+- **GitHub Repository:** https://github.com/kalakanhuswain18-hub/Credit-Fraud-Detection
 
-## Project Overview
+## 🚀 Features
 
-Credit Fraud Detection demonstrates how supervised Machine Learning can analyze transaction characteristics and estimate potential fraud risk.
+- Machine Learning-based transaction classification.
+- Fraud and Genuine transaction prediction.
+- Fraud probability and Genuine probability.
+- AI risk analysis with LOW, MEDIUM, and HIGH risk levels.
+- Interactive transaction analyzer.
+- Animated React user interface with a 3D assistant.
+- REST API integration using FastAPI.
+- Input validation using Pydantic.
+- Automated API tests using Pytest.
+- Docker configuration for containerization.
+- Cloud deployment using Vercel and Render.
 
-### Key Features
-
-- Synthetic financial transaction dataset generation
-- Exploratory Data Analysis (EDA)
-- Data preprocessing and feature engineering
-- Logistic Regression and Random Forest models
-- Fraud probability estimation
-- FastAPI REST API
-- Interactive React dashboard
-- Real-time frontend-backend integration
-- Transaction risk visualization
-- Automated API tests using Pytest
-- Docker and Docker Compose deployment
-
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Category | Technologies |
 |---|---|
 | Programming | Python, JavaScript |
-| Data Analysis | Pandas, NumPy |
-| Visualization | Matplotlib |
-| Machine Learning | Scikit-learn |
-| ML Algorithms | Logistic Regression, Random Forest |
+| Machine Learning | Scikit-learn, Random Forest, Logistic Regression |
+| Data Processing | Pandas, NumPy |
 | Backend | FastAPI, Uvicorn |
-| Frontend | React, Vite |
-| UI Animation | Framer Motion |
-| 3D Graphics | Three.js, React Three Fiber |
-| Testing | Pytest, FastAPI TestClient |
+| Frontend | React, Vite, CSS |
+| Animation & 3D | Framer Motion, Three.js, React Three Fiber |
+| Testing | Pytest |
+| Deployment | Vercel, Render |
 | Containerization | Docker, Docker Compose |
 | Version Control | Git, GitHub |
 
-## Project Architecture
+## 🧠 Machine Learning Workflow
 
-```text
-React Frontend
-      |
-      | HTTP Request
-      v
-FastAPI Backend
-      |
-      v
-Data Validation
-      |
-      v
-Preprocessing Pipeline
-      |
-      v
-Random Forest Model
-      |
-      v
-Fraud Probability
-      |
-      v
-Risk Classification
-      |
-      v
-React Dashboard
-```
+1. Synthetic transaction dataset generation.
+2. Data cleaning and preprocessing.
+3. Feature engineering and encoding.
+4. Train-test splitting.
+5. Handling class imbalance using class weights.
+6. Training Logistic Regression and Random Forest models.
+7. Model evaluation.
+8. Model serialization using Joblib.
+9. Integrating the trained model with FastAPI.
+10. Connecting the React frontend with the prediction API.
 
-## Project Structure
+## 📊 Transaction Input Features
+
+The application accepts the following transaction details:
+
+- Transaction Amount
+- Transaction Hour
+- Transaction Type
+- Account Balance
+- Transaction Channel
+
+## 📁 Project Structure
 
 ```text
 Credit_Fraud/
-|
+│
 ├── api/
-│   ├── Dockerfile
 │   ├── main.py
 │   ├── requirements.txt
-│   ├── requirements-lock.txt
-│   └── requirements-docker.txt
+│   └── requirements-lock.txt
 │
 ├── data/
 │   └── raw/
@@ -88,15 +79,11 @@ Credit_Fraud/
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
-│   │   │   └── RobotAssistant.jsx
 │   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   └── Analyzer.jsx
 │   │   ├── App.jsx
 │   │   └── App.css
 │   ├── Dockerfile
-│   ├── nginx.conf
-│   └── package.json
+│   └── nginx.conf
 │
 ├── models/
 │   ├── logistic_model.pkl
@@ -111,73 +98,124 @@ Credit_Fraud/
 ├── tests/
 │   └── test_api.py
 │
+├── api/Dockerfile
 ├── docker-compose.yml
 ├── .gitignore
 └── README.md
 ```
 
-## Dataset Information
+## ⚙️ Run Locally
 
-The project uses 5,000 synthetically generated financial transactions.
+### 1. Clone the repository
 
-| Class | Transactions | Percentage |
-|---|---:|---:|
-| Genuine | 4,750 | 95% |
-| Fraud | 250 | 5% |
-| Total | 5,000 | 100% |
+```bash
+git clone https://github.com/kalakanhuswain18-hub/Credit-Fraud-Detection.git
 
-### Dataset Features
+cd Credit-Fraud-Detection
+```
 
-- `transaction_amount`
-- `transaction_hour`
-- `transaction_type`
-- `account_balance`
-- `channel`
-- `merchant_category`
-- `account_type`
-- `is_fraud`
+### 2. Setup Backend
 
-The prediction API currently uses five input features:
+```bash
+python -m venv venv
+```
 
-1. Transaction amount
-2. Transaction hour
-3. Transaction type
-4. Account balance
-5. Transaction channel
+Activate the environment on Windows:
 
-**Dataset Disclaimer:** The dataset and fraud labels are synthetically generated using risk-weighted sampling. They do not represent verified real-world banking transactions.
+```powershell
+.\venv\Scripts\Activate.ps1
+```
 
-## Machine Learning Workflow
+Install dependencies:
 
-1. Synthetic dataset generation
-2. Exploratory Data Analysis
-3. Feature selection
-4. Train-test split
-5. Missing-value handling
-6. Numerical feature scaling
-7. Categorical feature encoding
-8. Model training
-9. Model evaluation
-10. Model serialization using Joblib
+```bash
+pip install -r api/requirements.txt
+```
 
-### Models
+Start FastAPI:
 
-**Logistic Regression**
+```bash
+uvicorn api.main:app --reload
+```
 
-Used as a baseline classification algorithm.
+Backend URL:
 
-**Random Forest Classifier**
+```text
+http://127.0.0.1:8000
+```
 
-An ensemble learning algorithm that combines multiple decision trees.
+API Documentation:
 
-Both models use class-weight balancing to address class imbalance.
+```text
+http://127.0.0.1:8000/docs
+```
 
-### Initial Model Evaluation
+### 3. Setup Frontend
 
-| Metric | Logistic Regression | Random Forest |
-|---|---:|---:|
-| Accuracy | 67.30% | 79.40% |
-| Fraud Precision | 7% | 10% |
-| Fraud Recall | 48% | 38% |
-| Fraud F1-Score | 0.13 | 0.16 |
-| PR-AUC | 0.0966 |
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend URL:
+
+```text
+http://localhost:5173
+```
+
+## 🐳 Run with Docker
+
+From the project root directory:
+
+```bash
+docker compose up --build
+```
+
+Stop containers:
+
+```bash
+docker compose down
+```
+
+## 🧪 Run Tests
+
+From the project root:
+
+```bash
+python -m pytest tests/ -v
+```
+
+## ☁️ Deployment
+
+| Component | Platform |
+|---|---|
+| React Frontend | Vercel |
+| FastAPI Backend | Render |
+| Source Code | GitHub |
+
+## ⚠️ Dataset Disclaimer
+
+This project uses a **synthetic transaction dataset** generated for educational and demonstration purposes.
+
+The dataset does not represent actual bank transactions or verified real-world fraud cases. Model predictions and risk scores are experimental and must not be used for real financial decisions.
+
+This application is a learning project and is not intended for production banking or financial security systems.
+
+## 🎯 Project Objective
+
+The objective of this project is to demonstrate how machine learning models can be integrated into a full-stack web application, exposed through REST APIs, containerized with Docker, and deployed to cloud platforms.
+
+## 👨‍💻 Author
+
+**Kalakanhu Swain**
+
+Computer Science & Engineering Student
+
+GitHub: https://github.com/kalakanhuswain18-hub
+
+---
+
+⭐ If you find this project interesting, consider giving the repository a star!
